@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useRef } from 'react';
-import { useToggle, upperFirst } from '@mantine/hooks';
+import { upperFirst } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
 import {
   TextInput,
@@ -8,18 +8,15 @@ import {
   Text,
   Paper,
   Group,
-  PaperProps,
   Button,
-
   Stack,
   Notification
 } from '@mantine/core';
-import { notifications } from "@mantine/notifications"
 import { IconCheck } from '@tabler/icons-react';
 import { getFirestore, collection, addDoc } from "firebase/firestore"
 import { firebaseConfig } from "../firebase"
 
-export default function Home(props: PaperProps) {
+export default function Home() {
 
   const database = getFirestore(firebaseConfig)
   const form = useForm({
@@ -73,7 +70,7 @@ export default function Home(props: PaperProps) {
 
   return (
     <main className='w-full'>
-      <Paper radius="md" p="xl" withBorder {...props} >
+      <Paper radius="md" p="xl" withBorder  >
         <Text size="lg" weight={500}>
           Fill up this Form
         </Text>
@@ -113,7 +110,6 @@ export default function Home(props: PaperProps) {
               required
               label="Phone Number"
               placeholder="Enter your 10 digit phone number"
-              // value={form.values.phoneNo > 0 ? form.values.phoneNo : "Enter your 10 digit phone number"}
               onChange={(event: number) => form.setFieldValue('phoneNo', event)}
               error={invalidPhone && 'Invalid phone number'}
               radius="md"
