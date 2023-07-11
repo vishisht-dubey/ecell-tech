@@ -44,7 +44,6 @@ export default function Home() {
       setInvalidPhone(false)
       setLoading(true);
       const response = await addDoc(collection(database, 'vishishtpharmaceutical'), form.values);
-      console.log(response,form.isValid())
       if (response&&form.isValid()) {
         setNotify(true)
         setLoading(false)
