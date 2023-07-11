@@ -43,8 +43,9 @@ export default function Home() {
       setInvalidEmail(false)
       setInvalidPhone(false)
       setLoading(true);
-      const response = await addDoc(collection(database, 'vishishtpharmaceuticalidd'), form.values);
-      if (response) {
+      const response = await addDoc(collection(database, 'vishishtpharmaceutical'), form.values);
+      console.log(response,form.isValid())
+      if (response&&form.isValid()) {
         setNotify(true)
         setLoading(false)
         setTimeout(() => {
