@@ -28,7 +28,7 @@ export default function Home() {
     },
 
     validate: {
-      email: (val) => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
+      email: (val) => (/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(val) ? null : 'Invalid email'),
       phoneNo: (val) => (999999999 < val && val < 10000000000 ? null : 'invalid phone number'),
     },
   });
@@ -43,7 +43,7 @@ export default function Home() {
       setInvalidEmail(false)
       setInvalidPhone(false)
       setLoading(true);
-      const response = await addDoc(collection(database, 'vishishtpharmaceutical'), form.values);
+      const response = await addDoc(collection(database, 'vishishtpharmaceuticalidd'), form.values);
       if (response) {
         setNotify(true)
         setLoading(false)
@@ -60,7 +60,7 @@ export default function Home() {
       setInvalidEmail(true)
       setInvalidPhone(false)
     }
-    else{
+    else {
       setInvalidEmail(true)
       setInvalidPhone(true)
     }
@@ -69,8 +69,8 @@ export default function Home() {
 
 
   return (
-    <main className='w-full'>
-      <Paper radius="md" p="xl" withBorder  >
+    <main className='w-full '>
+      <Paper p="xl" withBorder  >
         <Text size="lg" weight={500}>
           Fill up this Form
         </Text>
@@ -107,6 +107,7 @@ export default function Home() {
             />
 
             <NumberInput
+              hideControls
               required
               label="Phone Number"
               placeholder="Enter your 10 digit phone number"
